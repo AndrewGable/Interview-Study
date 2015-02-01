@@ -1,6 +1,7 @@
 import java.io.*;
+import java.util.Random;
 
-public class BinaryTreeStudy {
+public class TreeStudy {
 
 	
 	public static void main(String[] args) {
@@ -19,6 +20,137 @@ public class BinaryTreeStudy {
 		System.out.println("Tree in inOrderTraverse:\n" + tree.toString("in"));
 
 		System.out.println("Tree in postOrderTraverse:\n" + tree.toString("post"));
+
+		BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
+
+		bst.add(new Integer(10));
+		bst.add(new Integer(28));
+		bst.add(new Integer(52));
+
+		System.out.println("Test find of newly added item (10), it found: " + bst.find(new Integer(10)));
+
+		System.out.println("Test delete of newly added item (52), it deleted: " + bst.delete(new Integer(52)));
+		
+		System.out.println("Randomly inserting 10 values. . . \n");
+
+		for (int i = 0; i < 10; i++) {
+			Random rand = new Random(); 
+			Integer value = rand.nextInt(1000); 
+			bst.add(value);
+		}
+
+		System.out.println("Binary Search Tree: \n" + bst.toString("in"));
+	}
+
+	public static class BinarySearchTree<E extends Comparable<E>> extends BinaryTree<E> {
+
+		protected boolean addReturn;
+		protected E deleteReturn;
+
+		public E find(E target) {
+			return find(root, target);
+		}
+
+		private E find(Node<E> localRoot, E target) {
+			if (localRoot == null) {
+				return null;
+			}
+
+			int compareResult = target.compareTo(localRoot.data);
+			if (compareResult == 0) {
+				// Found it!
+				return localRoot.data;
+			} else if (compareResult < 0) {
+				// Go to left subtree
+				return find(localRoot.left, target);
+			} else {
+				// Go to right subtree
+				return find(localRoot.right, target);
+			} 
+		}
+
+		public boolean add(E item) {
+			root = add(root, item);
+			return addReturn;
+		}
+
+		private Node<E> add(Node<E> localRoot, E item) {
+			if (localRoot == null) {
+				// Item is not in the tree
+				addReturn = true;
+				return new Node<E>(item);
+			} else if (item.compareTo(localRoot.data) == 0) {
+				// Duplicate item
+				addReturn = false;
+				return localRoot;
+			} else if (item.compareTo(localRoot.data) < 0) {
+				// item needs to go left
+				localRoot.left = add(localRoot.left, item);
+				return localRoot;
+			} else {
+				// item needs to go right
+				localRoot.right = add(localRoot.right, item);
+				return localRoot;
+			}
+		}
+
+		public E delete(E target) {
+			root = delete(root, target);
+			return deleteReturn;
+		}
+
+		private Node<E> delete(Node<E> localRoot, E item) {
+			if (localRoot == null) {
+				// item is not in the tree
+				deleteReturn = null;
+				return localRoot;
+			}
+
+			int compareResult = item.compareTo(localRoot.data);
+			if (compareResult < 0) {
+				// need to go left
+				localRoot.left = delete(localRoot.left, item);
+				return localRoot;
+			} else if (compareResult > 0) {
+				// need to go right
+				localRoot.right = delete(localRoot.right, item);
+				return localRoot;
+			} else {
+				// item is at root, we've got some work to do
+				deleteReturn = localRoot.data;
+
+				if (localRoot.left == null) {
+					// no left, return the right
+					return localRoot.right;
+				} else if (localRoot.right == null) {
+					// no right, return the left
+					return localRoot.left;
+				} else {
+					// Node has two children, we have even more work to do
+					if (localRoot.left.right == null){
+						// The left child has no right
+						localRoot.data = localRoot.left.data;
+						localRoot.left = localRoot.left.left;
+						return localRoot;
+					} else {
+						// search for the in order predecessor 
+						localRoot.data = findLargestChild(localRoot.left);
+						return localRoot;
+					}
+				}
+			}
+		}
+
+		private E findLargestChild(Node<E> parent) {
+			if (parent.right.right == null) {
+				E returnVale = parent.right.data;
+				parent.right = parent.right.left;
+				return returnVale;
+			} else {
+				return findLargestChild(parent.right);
+			}
+		}
+
 	}
 
 
