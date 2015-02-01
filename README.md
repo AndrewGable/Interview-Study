@@ -16,34 +16,32 @@ Yes, some of the examples may be elementary but I am rusty with this stuff. Also
 
 ##### Tree Traversals 
 - **Pre-Order**
-    ```
+```
     if tree = empty
         return null
     else 
         visit root 
         preOrder() left subtree 
         preOrder() right subtree
-    ```
+```
 - **In-Order**
-    ```
-
+```
     if tree = empty
         return null
     else 
         inOrder() left subtree
         visit root
         inOrder() right subtree
-    ```
+```
 - **Post-Order**
-    ```
-
+```
     if tree = empty
         return null
     else 
         postOrder() left subtree
         postOrder() right subtree
         visit root
-    ```
+```
 
 
 
