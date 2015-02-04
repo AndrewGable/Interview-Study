@@ -3,6 +3,12 @@ public class TestGraphs {
 
 		System.out.println("Testing graphs . . .\n");
 
+		testDFS();
+
+		testBFS();
+	}
+
+	public static void testDFS() {
 		int graphSize = 7;
 
 		ListGraph graph = new ListGraph(graphSize, false);
@@ -33,5 +39,37 @@ public class TestGraphs {
 		for (int i = 0; i < graphSize; i++) {
 			System.out.println("Finish order[i]-> " + finishOrder[i]);
 		}
+	}
+
+	public static void testBFS() {
+		int graphSize = 10;
+
+		ListGraph graph = new ListGraph(graphSize, false);
+		
+		graph.insert(new Edge(0, 1));
+		graph.insert(new Edge(0, 3));
+		graph.insert(new Edge(2, 9));
+		graph.insert(new Edge(2, 8));
+		graph.insert(new Edge(2, 1));
+		graph.insert(new Edge(1, 4));
+		graph.insert(new Edge(1, 7));
+		graph.insert(new Edge(1, 6));
+		graph.insert(new Edge(4, 7));
+		graph.insert(new Edge(4, 6));
+		graph.insert(new Edge(7, 6));
+		graph.insert(new Edge(4, 5));
+
+
+		System.out.println("Breadth First Search");
+
+		int[] parentArray = BreadthFirstSearch.breadthFirstSearch(graph, 0);
+
+		System.out.println("\n");
+
+		for (int i = 0; i < graphSize; i++) {
+			System.out.println("Parent array["+i+"]-> " + parentArray[i]);
+		}
+
+		
 	}
 }
