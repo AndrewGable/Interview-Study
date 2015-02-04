@@ -1,6 +1,15 @@
 import java.util.*;
 
 public class DepthFirstSearch {
+
+	/**
+	 * 1. Mark the current vertex (u) as visited and enter it in the discovery order list
+	 * 2. for each vertex (v) adjacent to the current vertex (u)
+	 * 3. 	if v has not been visited
+	 * 4.		set parent of v = u
+	 * 5. 		recursively call dfs starting a v
+	 * 6. Mark u as finished, enter u into the finish order list.
+	 */
 	
 	private Graph graph;
 	private int[] parent;
@@ -66,5 +75,17 @@ public class DepthFirstSearch {
 			}
 		}
 		finishOrder[finishIndex++] = current;
+	}
+
+	public int[] getDiscoveryOrder() {
+		return discoveryOrder;
+	}
+
+	public int[] getFinishOrder() {
+		return finishOrder;
+	}
+
+	public int[] getParent() {
+		return parent;
 	}
 }
