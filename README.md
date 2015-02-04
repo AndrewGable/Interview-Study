@@ -42,5 +42,29 @@ Yes, some of the examples may be elementary but I am rusty with this stuff. Also
         visit root
 ```
 
+### Graphs
+
+- **Breadth First Search (BFS)**
+```
+1. Start at a vertex, mark it identified and place it in the queue
+2. while the queue is not empty
+3.   Take a vertex (u) out of the queue and visit it 
+4.   for all vertices (v) adjacent to the vertex (u)
+5.       if the v has not be identified or visited
+6.           mark if identified 
+7.           insert v into the queue
+8.           set the parent of v to the vertex (u)
+9. return parent
+```
+
+- **Depth First Search (DFS)**
+```
+1. Mark the current vertex (u) as visited and enter it in the discovery order list
+2. for each vertex (v) adjacent to the current vertex (u)
+3.    if v has not been visited
+4.        set parent of v = u
+5.        recursively call dfs starting a v
+6. Mark u as finished, enter u into the finish order list.
+```
 
 
