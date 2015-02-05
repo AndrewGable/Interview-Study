@@ -5,6 +5,8 @@ Repo to store some code study for various topics.
 
 Yes, some of the examples may be elementary but I am rusty with this stuff. Also, I don't get to use my trusty IDE. Just a simple text editor and the command line to compile and run code. 
 
+##Data Structures 
+
 ### Recursion 
 1. There must be one case for a small value of n that can be solved directly. **The base case**
 2. The problem can be split into a smaller version of the same problem. **The recursive case**
@@ -68,10 +70,28 @@ Yes, some of the examples may be elementary but I am rusty with this stuff. Also
 ```
 
 
-## HashTable
+### HashTable
 
 1. Open Addressing - Calculate hash code, if there is a collision then index until a free spot is found
 2. Channing - Calculate hash code, if there is a collision then add it to the array list (or linked list, tree, etc) at that index. 
+
+## Sorting 
+
+### Merge Sort
+
+```
+1. Split the array into two halves
+2. mergeSort() on left half
+3. mergeSort() on right half
+4. merge left and right
+```
+
+### Radix Sort
+```
+1. Start with the least significant digit
+2. Group the keys based on that digit, keep the original order of keys other digits
+3. Repeat the grouping process with each more significant digit
+```
 
 
 
