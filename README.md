@@ -68,3 +68,10 @@ Yes, some of the examples may be elementary but I am rusty with this stuff. Also
 ```
 
 
+## HashTable
+
+1. Open Addressing - Calculate hash code, if there is a collision then index until a free spot is found
+2. Channing - Calculate hash code, if there is a collision then add it to the array list (or linked list, tree, etc) at that index. 
+
+
+
