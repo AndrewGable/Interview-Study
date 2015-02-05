@@ -1,6 +1,12 @@
 import java.io.*;
 import java.util.Random;
 
+/**
+ * Created by Andrew Gable
+ *
+ * Tree study has a Main method and implementations of Binary Tree and Binary Search Tree. 
+ */
+
 public class TreeStudy {
 
 	
@@ -42,15 +48,29 @@ public class TreeStudy {
 		System.out.println("Binary Search Tree: \n" + bst.toString("in"));
 	}
 
+	/**
+	 * Implementation of Binary Search Tree
+	 */
 	public static class BinarySearchTree<E extends Comparable<E>> extends BinaryTree<E> {
 
 		protected boolean addReturn;
 		protected E deleteReturn;
 
+		/**
+		 * Find helper method for tree
+		 * @param target to find
+		 * @return return the found element
+		 */
 		public E find(E target) {
 			return find(root, target);
 		}
 
+		/**
+		 * Private method to find a node in a tree
+		 * @param local root of the tree
+		 * @param target to find in the tree
+		 * @return returns the element found in the tree
+		 */
 		private E find(Node<E> localRoot, E target) {
 			if (localRoot == null) {
 				return null;
@@ -69,11 +89,22 @@ public class TreeStudy {
 			} 
 		}
 
+		/**
+		 * Add an item to the tree helper method
+		 * @param item to add to the tree
+		 * @return the item added to the tree
+		 */
 		public boolean add(E item) {
 			root = add(root, item);
 			return addReturn;
 		}
 
+		/**
+		 * Private function to add to a tree
+		 * @param local root for the tree
+		 * @param item to add to the tree
+		 * @return return the node added to the tree
+		 */
 		private Node<E> add(Node<E> localRoot, E item) {
 			if (localRoot == null) {
 				// Item is not in the tree
@@ -94,11 +125,22 @@ public class TreeStudy {
 			}
 		}
 
+		/**
+		 * public helper method to remove from the tree
+		 * @param target to delete from the tree
+		 * @return the element added to the tree
+		 */
 		public E delete(E target) {
 			root = delete(root, target);
 			return deleteReturn;
 		}
 
+		/**
+		 * Private method to remove item from the tree
+		 * @param local root of the tree 
+		 * @param item to delete from the tree
+		 * @return node removed from the tree
+		 */
 		private Node<E> delete(Node<E> localRoot, E item) {
 			if (localRoot == null) {
 				// item is not in the tree
@@ -141,6 +183,11 @@ public class TreeStudy {
 			}
 		}
 
+		/**
+		 * Private method to find the largest child, used by delete()
+		 * @param parent node to find largest child
+		 * @return largest found child
+		 */
 		private E findLargestChild(Node<E> parent) {
 			if (parent.right.right == null) {
 				E returnVale = parent.right.data;
@@ -153,22 +200,36 @@ public class TreeStudy {
 
 	}
 
-
+	/**
+	 * Implementation of Binary Tree
+	 */
 	public static class BinaryTree<E> implements Serializable {
 
 		protected Node<E> root;
 
-		// Empty constructor 
+		/**
+		 * Empty constructor
+		 */
 		public BinaryTree() {
 			root = null;
 		}
 
-		// Root only constructor 
+		/**
+		 * Root only constructor
+		 * @param root of tree
+		 * @return
+		 */
 		protected BinaryTree(Node<E> root) {
 			this.root = root;
 		}
 
-		// Constructor that creates a new root with left and right trees
+		/**
+		 * Constructor that creates a new root with left and right trees
+		 * @param item to create binary tree
+		 * @param leftTree is the left tree for binary tree
+		 * @param rightTree is the right tree for binary tree
+		 * @return
+		 */
 		public BinaryTree(E data, BinaryTree<E> leftTree, BinaryTree<E> rightTree) {
 			root = new Node<E>(data);
 
@@ -185,6 +246,10 @@ public class TreeStudy {
 			}
 		}
 
+		/**
+		 * Get the left subtree 
+		 * @return the left subtree as a BinaryTree object
+		 */
 		public BinaryTree<E> getLeftSubtree() {
 			if (root != null && root.left != null) {
 				return new BinaryTree<E>(root.left);
@@ -193,6 +258,10 @@ public class TreeStudy {
 			}
 		}
 
+		/**
+		 * Get the right subtree
+		 * @return the right subtree as a BinaryTree object
+		 */
 		public BinaryTree<E> getRightSubtree() {
 			if (root != null && root.right != null) {
 				return new BinaryTree<E>(root.right);
@@ -201,10 +270,19 @@ public class TreeStudy {
 			}
 		}
 
+		/**
+		 * Returns true if root is a leaf
+		 * @return yes if root is a leaf
+		 */
 		public boolean isLeaf() {
 			return root == null || (root.left == null && root.right == null);
 		}
 
+		/** 
+		 * To String of Binary Tree
+		 * @param traversalMethod of tree
+		 * @return string of tree
+		 */
 		public String toString(String traversalMethod) {
 			StringBuilder stringBulder = new StringBuilder();
 

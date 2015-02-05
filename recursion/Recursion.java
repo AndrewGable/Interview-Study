@@ -1,3 +1,9 @@
+/**
+ * Created by Andrew Gable
+ *
+ * Study for recurisve methods. Includes print string, gcd, Linear Search and Binary Search recursive methods
+ */
+
 public class Recursion {
 	
 	public static void main(String[] args) {
