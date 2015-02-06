@@ -1,3 +1,6 @@
+/**
+ * Edge class that is used in graph
+ */
 public class Edge {
 
 	private int destination;

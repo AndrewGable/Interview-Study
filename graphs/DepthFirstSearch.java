@@ -60,6 +60,7 @@ public class DepthFirstSearch {
 		}
 	}
 
+    // Main dfs method
 	public void depthFirstSearch(int current) {
 		visited[current] = true;
 		discoveryOrder[discoverIndex++] = current;

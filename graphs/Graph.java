@@ -2,34 +2,23 @@ import java.util.*;
 
 public interface Graph {
 
-	/*
- 	Get the number of vertices for a graph
-	 */
+ 	// Get the number of vertices for a graph
 	int getNumberOfVertices();
 
-	/*
-	Is the graph directed or not?
-	 */
+	// Is the graph directed or not?
 	boolean isDirected();
 
-	/*
-	Insert an edge into the graph
-	 */
+
+	// Insert an edge into the graph
 	void insert(Edge edge);
 
-	/*
-	Determine if an edge exists
-	 */
+
+	// Determine if an edge exists
 	boolean isEdge(int source, int destination);
 
-	/*
-	Get the edge between two vertices 
-	 */
+	// Get the edge between two vertices
 	Edge getEdge(int source, int destination);
 
-	/*
-	Return an iterator 
-	 */
+	//Return an iterator
 	Iterator<Edge> edgeIterator(int source);
-
 }
