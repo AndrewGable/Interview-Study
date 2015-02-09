@@ -1,3 +1,7 @@
+/**
+ * Open addressing hash table 
+ * Only allows a load threshold of 0.75
+ */
 public class OpenHashTable<K, V> implements HashMapper<K, V> {
 	
 	private Entry<K, V>[] table;
@@ -7,10 +11,16 @@ public class OpenHashTable<K, V> implements HashMapper<K, V> {
 	private int numDeletes;
 	private final Entry<K, V> DELETED = new Entry<K, V>(null, null);
 
+	/**
+	 * Public constructor 
+	 */
 	public OpenHashTable() {
 		table = new Entry[START_CAPACITY];
 	}
 
+	/**
+	 * Entry object for hash table
+	 */
 	private static class Entry<K, V> {
 		
 		private K key;
@@ -36,6 +46,11 @@ public class OpenHashTable<K, V> implements HashMapper<K, V> {
 		}
 	}
 
+	/**
+	 * private function to find an object in a hash table
+	 * @param  key to find in hash table
+	 * @return     item if found
+	 */
 	private int find(Object key) {
 		int index = key.hashCode() % table.length;
 
@@ -54,6 +69,11 @@ public class OpenHashTable<K, V> implements HashMapper<K, V> {
 		return index;
 	}
 
+	/**
+	 * Get object from hash table
+	 * @param  key to add to hash table
+	 * @return     null if no item found, item if found
+	 */
 	public V get(Object key) {
 		// Find the object
 		int index = find(key);
@@ -66,6 +86,12 @@ public class OpenHashTable<K, V> implements HashMapper<K, V> {
 		}
 	}
 
+	/**
+	 * Put an item in the hash table, rehash maybe called if load is more than LOAD_THRESHOLD
+	 * @param  key   to put in table
+	 * @param  value to put in table
+	 * @return       null if there was no collision, old item if collided 
+	 */
 	public V put(K key, V value) {
 		int index = find(key);
 
@@ -90,6 +116,11 @@ public class OpenHashTable<K, V> implements HashMapper<K, V> {
 		return oldValue;
 	}
 
+	/**
+	 * Remove an item from the hash table
+	 * @param  key object to add to hash table
+	 * @return     null if not deleted, item if remove is successful 
+	 */
 	public V remove(Object key) {
 		int index = find(key);
 
@@ -107,6 +138,9 @@ public class OpenHashTable<K, V> implements HashMapper<K, V> {
 		return deletedValue;
 	}
 
+	/**
+	 * Private method to rehash the hash table if the load is too large.
+	 */
 	private void rehash() {
 		Entry<K, V>[] oldTable = table;
 
@@ -125,10 +159,18 @@ public class OpenHashTable<K, V> implements HashMapper<K, V> {
 		} 
 	}
 
+	/**
+	 * Get size of hash table
+	 * @return size of hash table
+	 */
 	public int size() {
 		return table.length;
 	}
 
+	/**
+	 * Is the hash table empty
+	 * @return true if the hash table is empty
+	 */
 	public boolean isEmpty() {
 		if (size() == 0) {
 			return true;

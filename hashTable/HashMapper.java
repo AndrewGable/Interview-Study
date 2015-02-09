@@ -1,4 +1,6 @@
-
+/**
+ * Interface for a hash table
+ */
 public interface HashMapper<K, V> {
 		
 	public V get(Object key);

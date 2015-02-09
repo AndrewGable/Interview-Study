@@ -1,11 +1,16 @@
 import java.util.*; 
 
+/**
+ * Hash table using Chaining method for collisions 
+ */
 public class ChainHashTable<K, V> implements HashMapper<K, V> {
 	private LinkedList<Entry <K, V>>[] table;
 	private int numKeys;
 	private static final int CAPACITY = 101;
 
-
+	/**
+	 * Entry object for hash table
+	 */
 	private static class Entry<K, V> {
 		
 		private K key;
@@ -31,10 +36,18 @@ public class ChainHashTable<K, V> implements HashMapper<K, V> {
 		}
 	}
 
+	/**
+	 * Public constructor
+	 */
 	public ChainHashTable() {
 		table = new LinkedList[CAPACITY];
 	}
 
+	/**
+	 * Get an object form the Hash Table
+	 * @param  key to retrieve 
+	 * @return     null if not in table, item if found
+	 */
 	public V get(Object key) {
 		int index = key.hashCode() % table.length;
 
@@ -57,6 +70,12 @@ public class ChainHashTable<K, V> implements HashMapper<K, V> {
 		return null;
 	}
 
+	/**
+	 * Add item to hash table
+	 * @param  key   Key to add
+	 * @param  value to add to table
+	 * @return       null if no collision, old item if collision 
+	 */
 	public V put(K key, V value) {
 		int index = key.hashCode() % table.length;
 
@@ -85,6 +104,11 @@ public class ChainHashTable<K, V> implements HashMapper<K, V> {
 		return null;
 	}
 
+	/**
+	 * Remove item from hash table
+	 * @param  key to remove from table
+	 * @return     null if item is not in table, item if removed
+	 */
 	public V remove(Object key) {
 		int index = key.hashCode() % table.length;
 
@@ -114,10 +138,18 @@ public class ChainHashTable<K, V> implements HashMapper<K, V> {
 		return null;
 	}
 
+	/**
+	 * Get size of hash table
+	 * @return size of hash table
+	 */
 	public int size() {
 		return table.length;
 	}
 
+	/**
+	 * Is the hash table empty
+	 * @return true if the hash table is empty
+	 */
 	public boolean isEmpty() {
 		if (size() == 0) {
 			return true;
